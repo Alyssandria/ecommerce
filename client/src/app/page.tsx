@@ -1,3 +1,7 @@
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+
 export default function Home() {
-  return ("Site is being constructed");
+  return (
+    "Hello Home"
+  );
 }
