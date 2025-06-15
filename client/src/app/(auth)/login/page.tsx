@@ -22,9 +22,12 @@ const LoginPage = () => {
     }
   })
 
+  const handleSubmit = (data: z.infer<typeof LoginSchema>) => {
+    console.log(data)
+  }
   return (
     <Form {...form}>
-      <form method="POST" className="flex flex-col items-center gap-8">
+      <form method="POST" className="flex flex-col items-center gap-8" onSubmit={form.handleSubmit(handleSubmit)}>
         <Fieldset className="flex flex-col gap-8 w-full">
           <Legend>Login credentials</Legend>
           <FormField

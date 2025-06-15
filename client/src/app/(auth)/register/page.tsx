@@ -4,12 +4,30 @@ import { Button } from "@/components/ui/button";
 import { Fieldset } from "@/components/ui/fieldset";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Legend } from "@/components/ui/legend";
+import { registerSchema } from "@/models/auth/registerSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import z from "zod";
+
 const RegisterPage = () => {
-  const form = useForm()
+
+  const form = useForm<z.infer<typeof registerSchema>>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+      email: "",
+      confirm: ""
+    },
+    mode: "onSubmit"
+  })
+  const handleUpdate = (data: z.infer<typeof registerSchema>) => {
+    console.log(data)
+  }
+
   return (
     <Form {...form}>
-      <form className="flex flex-col items-center gap-8">
+      <form className="flex flex-col items-center gap-8" onSubmit={form.handleSubmit(handleUpdate)}>
         <Fieldset className="flex flex-col gap-8">
           <Legend>User personal details</Legend>
           <div className="w-full flex gap-4">
@@ -56,7 +74,7 @@ const RegisterPage = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <InputField placeholder="Enter your password" {...field} />
+                  <InputField type="password" placeholder="Enter your password" {...field} />
                 </FormControl>
                 <FormDescription className="sr-only">
                   User Password
@@ -73,7 +91,7 @@ const RegisterPage = () => {
               <FormItem>
                 <FormLabel>Confirm Password</FormLabel>
                 <FormControl>
-                  <InputField placeholder="Enter your Confirm Password" {...field} />
+                  <InputField type="password" placeholder="Enter your Confirm Password" {...field} />
                 </FormControl>
                 <FormDescription className="sr-only">
                   Confirm Password
