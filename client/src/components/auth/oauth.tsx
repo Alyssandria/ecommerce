@@ -22,7 +22,7 @@ export const Oauth = () => {
             "use server"
             await signIn("google")
           }}
-          className="flex flex justify-between"
+          className="flex justify-between"
         >
           <Button type="submit" className={oauthButtons}>
             <FaApple className={`${iconClassname} text-secondary-foreground`} />

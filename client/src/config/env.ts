@@ -5,8 +5,6 @@ const Config = z.object({
   AUTH_SECRET: z.string(),
   AUTH_GOOGLE_ID: z.string(),
   AUTH_GOOGLE_SECRET: z.string()
-
-
 })
 export const config: z.infer<typeof Config> = {
   AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE!,
