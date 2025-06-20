@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5858:5858
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       - db
   db:
